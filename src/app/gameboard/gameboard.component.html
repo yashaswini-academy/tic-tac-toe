@@ -1,0 +1,26 @@
+<app-score [message]="gameMessage" [playerScore]="playerScore" [compScore]="compScore"></app-score>
+<div id="gameboard-container">
+  <div id="gameboard">
+    <div class="row" *ngFor="let row of cells; let i = index">
+      <div class="cell" (click)="cellClicked(i, j)" *ngFor="let col of row; let j = index;">
+        <div class="content">
+            <fa *ngIf="cells[i][j] == 1" name="times" class="cross"></fa>
+            <fa *ngIf="cells[i][j] == 0" name="circle-o" class="zero"></fa>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings">
+    <div class="input-wrapper" (click)="onSelect()" [class.selected]="isPlayerFirst">
+      <i *ngIf="isPlayerFirst" class="fa fa-check-circle"></i>
+      <i *ngIf="!isPlayerFirst" class="fa fa-circle-o"></i>
+      <label>Player Plays First</label>
+    </div>
+
+    <div class="actions">
+      <button class="new-game" (click)="startNewGame()">New Game</button>
+      <button class="reset" (click)="resetGame()">Reset</button>
+    </div>
+  </div>
+</div>
